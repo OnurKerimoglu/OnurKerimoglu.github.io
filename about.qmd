@@ -1,0 +1,19 @@
+---
+title: "About"
+image: onur_alster_cropped_q50.jpg
+about:
+  template: jolla
+  links:
+    - icon: globe
+      text: WWW
+      href: https://sites.google.com/view/onur-kerimoglu
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/onur-kerimoglu/
+    - icon: github
+      text: Github
+      href: https://github.com/OnurKerimoglu
+
+---
+
+Hi, I'm Onur Kerimoglu. I'm a data scientist with a backround in ecosystem modelling research, based in Hamburg, Germany (and that's our pretty Alster behind me on my profile picture).

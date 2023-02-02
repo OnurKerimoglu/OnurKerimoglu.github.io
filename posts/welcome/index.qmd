@@ -1,0 +1,14 @@
+---
+title: "Welcome To My Blog"
+author: "Onur Kerimoglu"
+date: "2023-02-02"
+categories: [news]
+---
+
+Welcome to my Quarto blog!
+
+Here I am planning to write about my ongoing projects, recipes, what worked and what not, in hopes that these will be helpful for someone out there, or my future self 😃
+
+Enjoy!
+
+![Image credit: DreamStudio](DreamStudio_a_pencil_and_watercolor_drawing_of_steaming_coffee_next_to_a_computer_keyboard_on_desk.jpg){fig-align="left"}

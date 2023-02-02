@@ -1,0 +1,21 @@
+project:
+  type: website
+
+website:
+  title: "OnurKerimoglu.github.io"
+  navbar:
+    right:
+      - about.qmd
+      - icon: globe
+        href: https://sites.google.com/view/onur-kerimoglu
+      - icon: linkedin
+        href: https://www.linkedin.com/in/onur-kerimoglu/
+      - icon: github
+        href: https://github.com/OnurKerimoglu
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+
+

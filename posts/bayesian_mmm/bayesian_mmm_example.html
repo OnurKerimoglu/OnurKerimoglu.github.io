@@ -316,7 +316,7 @@ INFO:cmdstanpy:Chain [1] done processing</code></pre>
 <div class="cell" data-outputid="132a3969-177e-4b5b-d785-74f857137f9d" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> prophet.plot_components(prophet_predict, figsize <span class="op">=</span> (<span class="dv">20</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Adding the detected trend and seasonality signals back to the data table:</p>
@@ -448,7 +448,7 @@ Control Variables: Adding season</code></pre>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax.plot(prior_pred[<span class="st">"sales"</span>].T, color <span class="op">=</span> <span class="st">"0.5"</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax.plot(y_transformed.values, color <span class="op">=</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Check the prior distributions:</p>
@@ -503,13 +503,13 @@ control coef priors: 3
 sigma prior: 1</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-12-output-3.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-12-output-3.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-12-output-4.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-12-output-4.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -848,7 +848,7 @@ sigma prior: 1</code></pre>
       dtype=object)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -906,7 +906,7 @@ sigma prior: 1</code></pre>
 <span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Revenue'</span>)</span>
 <span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Except for two weeks, the observations lay within 2 standard deviations plus/minus the predictions. That instance is likely due to a special event, like a promotion or a holiday, which is not accounted for by the model. The mean absolute error corresponds to about 20% of the revenue.</p>
@@ -957,7 +957,7 @@ sigma prior: 1</code></pre>
 <span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>According to this plot, the model suggests that a large portion of the revenue is not explained by marketing actions.</p>
@@ -996,7 +996,7 @@ ROI_m = \frac{\sum_t C_{t,m} - \sum_t S_{t,m}}{\sum_t S_{t,m}} * 100
 <span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+<p><img src="bayesian_mmm_example_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Our model suggests that only channels 1, 2 and 6 generate positive net gains. Among these channels, 2 seems most effective in terms of ROI, however, in terms of absolute revenue contribution, channel 6 is the most important source. Among the channels that results in net costs channel 7 is the one that requires most immediate attenion, both in terms of ROI and absolute net cost. Continued investment in channels 3 and 4 seem also questionable.</p>

@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Onur Kerimoglu">
+<meta name="dcterms.date" content="2023-02-03">
+
+<title>OnurKerimoglu.github.io - Bayesian MMM</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">OnurKerimoglu.github.io</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sites.google.com/view/onur-kerimoglu"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/onur-kerimoglu/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/OnurKerimoglu"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bayesian MMM</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">code</div>
+    <div class="quarto-category">analysis</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Onur Kerimoglu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p><a href="https://colab.research.google.com/github/OnurKerimoglu/bayesian_mmm/blob/main/examples/bayesian_mmm_example_enhanced_newdataset.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<section id="the-problem-statement-and-the-proposed-bayesian-mmm-solution" class="level1">
+<h1>The Problem Statement and the proposed Bayesian MMM solution</h1>
+<p>Consider a company, which runs an online shop, and advertises on seven different paid channels (TV, radio, billboards, Google Ads, etc). Based on weekly data on weekly advertisement costs and revenue available for 2 years, the company would like to understand how effective different channels are. One has to take into account that marketing actions have usually not an immediate effect, ads and campaigns in one week influence usually sales in the coming weeks. So different channels can be expected to target different audiences at different times and for different durations, and hence will have lagged effects on revenue.</p>
+<p>For this problem, I used a Bayesian Media Mix Modelling approach. MMM can be perfomed with a simpler linear regression approach, however with a bayesian approach, we can find more robust solutions, and estimate confidence intervals. For this work, I took inspiration and used code from the following sources:</p>
+<ul>
+<li><a href="https://towardsdatascience.com/bayesian-marketing-mix-modeling-in-python-via-pymc3-7b2071f6001a">Blogpost #1</a> by Robert Kübler</li>
+<li><a href="https://towardsdatascience.com/modeling-marketing-mix-using-pymc3-ba18dd9e6e68">Blogpost #2</a> by Slava Kisilevich</li>
+<li><a href="https://github.com/slavakx/bayesian_mmm">Git repo #1</a> by Slava Kisilevich</li>
+<li><a href="https://github.com/ikatsov/tensor-house/blob/master/promotions/mediamix-bayesian.ipynb">Git repo #2</a> by Ilya Katsov</li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/46001.pdf">Jin et al.&nbsp;2017</a></li>
+</ul>
+</section>
+<section id="install-import-packages" class="level1">
+<h1>Install / Import Packages</h1>
+<div class="cell" data-outputid="135a2921-932a-4e96-db7c-b4a4629557f5" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pymc3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: pymc3 in /usr/local/lib/python3.8/dist-packages (3.11.5)
+Requirement already satisfied: theano-pymc==1.1.2 in /usr/local/lib/python3.8/dist-packages (from pymc3) (1.1.2)
+Requirement already satisfied: numpy&lt;1.22.2,&gt;=1.15.0 in /usr/local/lib/python3.8/dist-packages (from pymc3) (1.21.6)
+Requirement already satisfied: scipy&lt;1.8.0,&gt;=1.7.3 in /usr/local/lib/python3.8/dist-packages (from pymc3) (1.7.3)
+Requirement already satisfied: typing-extensions&gt;=3.7.4 in /usr/local/lib/python3.8/dist-packages (from pymc3) (4.4.0)
+Requirement already satisfied: arviz&gt;=0.11.0 in /usr/local/lib/python3.8/dist-packages (from pymc3) (0.12.1)
+Requirement already satisfied: semver&gt;=2.13.0 in /usr/local/lib/python3.8/dist-packages (from pymc3) (2.13.0)
+Requirement already satisfied: patsy&gt;=0.5.1 in /usr/local/lib/python3.8/dist-packages (from pymc3) (0.5.3)
+Requirement already satisfied: dill in /usr/local/lib/python3.8/dist-packages (from pymc3) (0.3.6)
+Requirement already satisfied: pandas&gt;=0.24.0 in /usr/local/lib/python3.8/dist-packages (from pymc3) (1.3.5)
+Requirement already satisfied: fastprogress&gt;=0.2.0 in /usr/local/lib/python3.8/dist-packages (from pymc3) (1.0.3)
+Requirement already satisfied: cachetools&gt;=4.2.1 in /usr/local/lib/python3.8/dist-packages (from pymc3) (5.3.0)
+Requirement already satisfied: deprecat in /usr/local/lib/python3.8/dist-packages (from pymc3) (2.1.1)
+Requirement already satisfied: filelock in /usr/local/lib/python3.8/dist-packages (from theano-pymc==1.1.2-&gt;pymc3) (3.9.0)
+Requirement already satisfied: netcdf4 in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (1.6.2)
+Requirement already satisfied: matplotlib&gt;=3.0 in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (3.2.2)
+Requirement already satisfied: xarray-einstats&gt;=0.2 in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (0.5.1)
+Requirement already satisfied: packaging in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (23.0)
+Requirement already satisfied: setuptools&gt;=38.4 in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (57.4.0)
+Requirement already satisfied: xarray&gt;=0.16.1 in /usr/local/lib/python3.8/dist-packages (from arviz&gt;=0.11.0-&gt;pymc3) (2022.12.0)
+Requirement already satisfied: pytz&gt;=2017.3 in /usr/local/lib/python3.8/dist-packages (from pandas&gt;=0.24.0-&gt;pymc3) (2022.7.1)
+Requirement already satisfied: python-dateutil&gt;=2.7.3 in /usr/local/lib/python3.8/dist-packages (from pandas&gt;=0.24.0-&gt;pymc3) (2.8.2)
+Requirement already satisfied: six in /usr/local/lib/python3.8/dist-packages (from patsy&gt;=0.5.1-&gt;pymc3) (1.15.0)
+Requirement already satisfied: wrapt&lt;2,&gt;=1.10 in /usr/local/lib/python3.8/dist-packages (from deprecat-&gt;pymc3) (1.14.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.8/dist-packages (from matplotlib&gt;=3.0-&gt;arviz&gt;=0.11.0-&gt;pymc3) (3.0.9)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.8/dist-packages (from matplotlib&gt;=3.0-&gt;arviz&gt;=0.11.0-&gt;pymc3) (1.4.4)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.8/dist-packages (from matplotlib&gt;=3.0-&gt;arviz&gt;=0.11.0-&gt;pymc3) (0.11.0)
+Requirement already satisfied: cftime in /usr/local/lib/python3.8/dist-packages (from netcdf4-&gt;arviz&gt;=0.11.0-&gt;pymc3) (1.6.2)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prophet <span class="im">import</span> Prophet</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc3 <span class="im">as</span> pm3</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> theano</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> theano.tensor <span class="im">as</span> tt</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler <span class="co">#, #StandardScaler, PowerTransformer</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error, mean_absolute_percentage_error, r2_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-data" class="level1">
+<h1>Prepare Data</h1>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_wdates <span class="op">=</span> pd.read_csv(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://raw.githubusercontent.com/OnurKerimoglu/bayesian_mmm/master/data/MMM_test_data.csv'</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  parse_dates<span class="op">=</span>[<span class="st">'start_of_week'</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="detect-trend-and-seasonality" class="level2">
+<h2 class="anchored" data-anchor-id="detect-trend-and-seasonality">Detect Trend and Seasonality</h2>
+<p>Let’s first detect the trend ans seasonility in the data, which we will use as control variables in our model.</p>
+<div class="cell" data-outputid="f0a9eea2-d74b-4f1f-eb23-3953d543be6f" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prophet_data <span class="op">=</span> data_wdates.rename(columns <span class="op">=</span> {<span class="st">'revenue'</span>: <span class="st">'y'</span>, <span class="st">'start_of_week'</span>: <span class="st">'ds'</span>})</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prophet <span class="op">=</span> Prophet(yearly_seasonality<span class="op">=</span><span class="va">True</span>, weekly_seasonality<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>prophet.fit(prophet_data[[<span class="st">"ds"</span>, <span class="st">"y"</span>]])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>prophet_predict <span class="op">=</span> prophet.predict(prophet_data[[<span class="st">"ds"</span>, <span class="st">"y"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:prophet:Disabling daily seasonality. Run prophet with daily_seasonality=True to override this.
+DEBUG:cmdstanpy:input tempfile: /tmp/tmpr0x5f6xf/587rqks_.json
+DEBUG:cmdstanpy:input tempfile: /tmp/tmpr0x5f6xf/ngpqm7ps.json
+DEBUG:cmdstanpy:idx 0
+DEBUG:cmdstanpy:running CmdStan, num_threads: None
+DEBUG:cmdstanpy:CmdStan args: ['/usr/local/lib/python3.8/dist-packages/prophet/stan_model/prophet_model.bin', 'random', 'seed=51446', 'data', 'file=/tmp/tmpr0x5f6xf/587rqks_.json', 'init=/tmp/tmpr0x5f6xf/ngpqm7ps.json', 'output', 'file=/tmp/tmpr0x5f6xf/prophet_modelpp0cy47i/prophet_model-20230203181838.csv', 'method=optimize', 'algorithm=lbfgs', 'iter=10000']
+18:18:38 - cmdstanpy - INFO - Chain [1] start processing
+INFO:cmdstanpy:Chain [1] start processing
+18:18:38 - cmdstanpy - INFO - Chain [1] done processing
+INFO:cmdstanpy:Chain [1] done processing</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="132a3969-177e-4b5b-d785-74f857137f9d" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> prophet.plot_components(prophet_predict, figsize <span class="op">=</span> (<span class="dv">20</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Adding the detected trend and seasonality signals back to the data table:</p>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prophet_columns <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> prophet_predict.columns <span class="cf">if</span> (col.endswith(<span class="st">"upper"</span>) <span class="op">==</span> <span class="va">False</span>) <span class="op">&amp;</span> (col.endswith(<span class="st">"lower"</span>) <span class="op">==</span> <span class="va">False</span>)]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>final_data <span class="op">=</span> data_wdates.copy()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>final_data[<span class="st">"trend"</span>] <span class="op">=</span> prophet_predict[<span class="st">"trend"</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>final_data[<span class="st">"season"</span>] <span class="op">=</span> prophet_predict[<span class="st">"yearly"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The final feature (X) and target (y) data:</p>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> final_data.drop(columns<span class="op">=</span>[<span class="st">'revenue'</span>, <span class="st">'start_of_week'</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> final_data[<span class="st">'revenue'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="the-model" class="level1">
+<h1>The Model</h1>
+<section id="carryover-adstock" class="level2">
+<h2 class="anchored" data-anchor-id="carryover-adstock">Carryover (adstock)</h2>
+<p>For modelling carryover, following Jin et al.&nbsp;2017, we use an adstock function of the form:</p>
+<p><span class="math display">\[
+x^*_{t,m} = \frac{\sum_l w_m(l)x_{t-l,m}}{\sum_l w_m(l)}
+\]</span></p>
+<p>Here, <span class="math inline">\(w_m\)</span> is a nonnegative weight function, which can be described with a geometric decay function, i.e.,</p>
+<p><span class="math display">\[
+w_m = \alpha_m^l, l = 0, 1, ..., L-1, 0&lt;\alpha_m&lt;1
+\]</span></p>
+<p>where, <span class="math inline">\(w_m\)</span> describes the weight of the effect on each time step <span class="math inline">\(l\)</span>, that lasts for <span class="math inline">\(L\)</span> time steps (which we here prescribe to be 13 time steps, i.e., weeks, which is a good approximation for infinity according to Jin et al.&nbsp;2017), and <span class="math inline">\(\alpha_m\)</span> is the decay rate for the channel <span class="math inline">\(m\)</span>.</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> carryover(x, strength, length<span class="op">=</span><span class="dv">13</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> tt.as_tensor_variable(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        [tt.power(strength, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(length)]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    x_lags <span class="op">=</span> tt.stack(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        [tt.concatenate([tt.zeros(i),x[:x.shape[<span class="dv">0</span>]<span class="op">-</span>i]]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(length)]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tt.dot(w, x_lags)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-additive-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-additive-model">The additive model</h2>
+<p>Next, we build a model that consists of delayed media channels and control variables:</p>
+<p><span class="math display">\[
+y_t = \epsilon + \tau  +  \sum_c \gamma_c z_{t,c} + \sum_m  \beta_m x^*_{t,m}
+\]</span></p>
+<p>where, <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\tau\)</span> represent noise and baseline revenue, <span class="math inline">\(z_{t,c}\)</span> and <span class="math inline">\(\gamma\)</span> represent the control variable <span class="math inline">\(c\)</span> and their effects, and <span class="math inline">\(x^*_{t,m}\)</span> and <span class="math inline">\(\beta_m\)</span> represent the (adstocked) media spending <span class="math inline">\(m\)</span> and their effects, respectively.</p>
+<p>Note that here for simplicity, we assume no shape effects (i.e., no saturation). We further assume that marketing contributions can only be positive, which can be achieved by drawing the contribution coefficient from a half-normal distribution.</p>
+<div class="cell" data-outputid="d5dd6e83-1623-4cd8-a92f-ff83a43d6a61" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>control_variables <span class="op">=</span> [<span class="st">"trend"</span>, <span class="st">"season"</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>delay_channels <span class="op">=</span> [<span class="ss">f'spend_channel_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>transform_variables <span class="op">=</span> control_variables<span class="op">+</span>delay_channels</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>y_transformed<span class="op">=</span>y<span class="op">/</span><span class="dv">10000</span> <span class="co">#rescale target variable</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>X_transformed <span class="op">=</span> X.copy() <span class="co">#Min-max scale the features</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>numerical_encoder_dict <span class="op">=</span> {}</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature <span class="kw">in</span> transform_variables:</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    original <span class="op">=</span> final_data[feature].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    transformed <span class="op">=</span> scaler.fit_transform(original)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    X_transformed[feature] <span class="op">=</span> transformed</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    numerical_encoder_dict[feature] <span class="op">=</span> scaler</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm3.Model() <span class="im">as</span> mmm1:</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    channel_contributions <span class="op">=</span> []</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> channel <span class="kw">in</span> delay_channels:</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Delay channels: Adding </span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Force the channel coefficients to be normal:</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        coef <span class="op">=</span> pm3.HalfNormal(<span class="ss">f'coef_</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">'</span>, sigma <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        car <span class="op">=</span> pm3.Beta(<span class="ss">f'car_</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">'</span>, alpha<span class="op">=</span><span class="dv">2</span>, beta<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        channel_data <span class="op">=</span> X_transformed[channel].values</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        channel_contribution <span class="op">=</span> pm3.Deterministic(</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f'contribution_</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">'</span>,</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>            coef <span class="op">*</span> carryover(</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>                    channel_data,</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                    car),</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        channel_contributions.append(channel_contribution)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    control_contributions <span class="op">=</span> []</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> control_var <span class="kw">in</span> control_variables:</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Control Variables: Adding </span><span class="sc">{</span>control_var<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> X_transformed[control_var].values</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>        control_beta <span class="op">=</span> pm3.Normal(<span class="ss">f"control_</span><span class="sc">{</span>control_var<span class="sc">}</span><span class="ss">"</span>, sigma <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>        control_x <span class="op">=</span> control_beta <span class="op">*</span> x</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>        control_contributions.append(control_x)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> pm3.Normal(<span class="st">"base"</span>, np.mean(y_transformed.values), sigma <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">#base = pm3.Exponential('base', lam=0.01)</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    noise <span class="op">=</span> pm3.Exponential(<span class="st">'noise'</span>, lam<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    sales <span class="op">=</span> pm3.Normal(</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sales'</span>,</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>        mu<span class="op">=</span> base <span class="op">+</span> <span class="bu">sum</span>(control_contributions) <span class="op">+</span> <span class="bu">sum</span>(channel_contributions),</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>        sigma<span class="op">=</span>noise,</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>        observed<span class="op">=</span>y_transformed</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Delay channels: Adding spend_channel_1
+Delay channels: Adding spend_channel_2
+Delay channels: Adding spend_channel_3
+Delay channels: Adding spend_channel_4
+Delay channels: Adding spend_channel_5
+Delay channels: Adding spend_channel_6
+Delay channels: Adding spend_channel_7
+Control Variables: Adding trend
+Control Variables: Adding season</code></pre>
+</div>
+</div>
+</section>
+<section id="do-the-prior-distributions-make-sense" class="level2">
+<h2 class="anchored" data-anchor-id="do-the-prior-distributions-make-sense">Do the prior distributions make sense?</h2>
+<p>We can check whether the model estimates based on priors more or less make sense, as can be judged from a rough alignment of the corresponding estimates with the observations.</p>
+<div class="cell" data-outputid="e272d218-c7be-4c0e-ff0a-c10adf6b75c9" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    prior_pred <span class="op">=</span> pm3.sample_prior_predictive()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>prior_names <span class="op">=</span> [prior_name <span class="cf">for</span> prior_name <span class="kw">in</span> <span class="bu">list</span>(prior_pred.keys()) <span class="cf">if</span> (prior_name.endswith(<span class="st">"logodds__"</span>) <span class="op">==</span> <span class="va">False</span>) <span class="op">&amp;</span> (prior_name.endswith(<span class="st">"_log__"</span>) <span class="op">==</span> <span class="va">False</span>)]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">20</span>, <span class="dv">8</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax.plot(prior_pred[<span class="st">"sales"</span>].T, color <span class="op">=</span> <span class="st">"0.5"</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax.plot(y_transformed.values, color <span class="op">=</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Check the prior distributions:</p>
+<div class="cell" data-outputid="0498cdfb-3b83-47e9-98cb-099fd8f8c485" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plots priors using the random variables</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_priors(variables, prior_dictionary <span class="op">=</span> <span class="va">None</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(variables[<span class="dv">0</span>], pm3.model.TransformedRV) <span class="op">==</span> <span class="va">False</span> <span class="kw">and</span> prior_dictionary <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"prior dictionary should be provided. It can be generated by sample_prior_predictive"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> <span class="bu">int</span>(math.ceil(<span class="bu">len</span>(variables)<span class="op">/</span>cols))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(rows, cols, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">3</span><span class="op">*</span>rows))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> np.reshape(ax, (<span class="op">-</span><span class="dv">1</span>, cols))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(rows):</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(cols):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>            vi <span class="op">=</span> i<span class="op">*</span>cols <span class="op">+</span> j</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> vi <span class="op">&lt;</span> <span class="bu">len</span>(variables):</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                var <span class="op">=</span> variables[vi]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">isinstance</span>(var, pm3.model.TransformedRV):</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                    sns.histplot(var.random(size<span class="op">=</span><span class="dv">10000</span>).flatten(), kde<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax[i, j])</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                    <span class="co">#p.set_axis_labels(var.name)</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                    ax[i, j].set_title(var.name)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                    prior <span class="op">=</span> prior_dictionary[var]</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                    sns.histplot(prior, kde<span class="op">=</span><span class="va">True</span>, ax <span class="op">=</span> ax[i, j])</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                    ax[i, j].set_title(var)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>adstock_priors <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> prior_names <span class="cf">if</span> p.startswith(<span class="st">"car"</span>)]</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>plot_priors(adstock_priors, prior_pred)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"carryover priors: </span><span class="sc">{</span><span class="bu">len</span>(adstock_priors)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha_priors = [p for p in prior_names if p.startswith("sat")]</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_priors(alpha_priors, prior_pred)</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># print(f"sat priors: {len(alpha_priors)}")</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>media_coef_priors <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> prior_names <span class="cf">if</span> p.startswith(<span class="st">"coef"</span>)]</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>plot_priors(media_coef_priors, prior_pred)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"coef priors: </span><span class="sc">{</span><span class="bu">len</span>(media_coef_priors)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>control_coef_priors <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> prior_names <span class="cf">if</span> p.startswith(<span class="st">"control_"</span>)] <span class="op">+</span> [<span class="st">"base"</span>]</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>plot_priors(control_coef_priors, prior_pred)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"control coef priors: </span><span class="sc">{</span><span class="bu">len</span>(control_coef_priors)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_priors(["sigma"], prior_pred)</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sigma prior: 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>carryover priors: 7
+coef priors: 7
+control coef priors: 3
+sigma prior: 1</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-12-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-12-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="fit-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-model">Fit the model</h2>
+<div class="cell" data-outputid="89ffcc3b-0e14-473f-c30f-d7f3d1b35be8" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  trace <span class="op">=</span> pm3.sample(return_inferencedata<span class="op">=</span><span class="va">True</span>, tune<span class="op">=</span><span class="dv">3000</span>, target_accept<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  trace_summary <span class="op">=</span> az.summary(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      <progress value="4000" class="" max="4000" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      100.00% [4000/4000 01:26&lt;00:00 Sampling chain 0, 0 divergences]
+    </div>
+    
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      <progress value="4000" class="" max="4000" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      100.00% [4000/4000 01:32&lt;00:00 Sampling chain 1, 0 divergences]
+    </div>
+    
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.8/dist-packages/arviz/stats/diagnostics.py:586: RuntimeWarning: invalid value encountered in double_scalars
+  (between_chain_variance / within_chain_variance + num_samples - 1) / (num_samples)
+/usr/local/lib/python3.8/dist-packages/arviz/stats/diagnostics.py:586: RuntimeWarning: invalid value encountered in double_scalars
+  (between_chain_variance / within_chain_variance + num_samples - 1) / (num_samples)</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="045cb9e3-9a69-4353-adf2-f7ce6f6a0699" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>trace_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+
+
+  <div id="df-b2da146a-96f5-410f-a8a3-da37385f5212">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>control_trend</th>
+      <td>2.064</td>
+      <td>1.975</td>
+      <td>-1.338</td>
+      <td>6.022</td>
+      <td>0.045</td>
+      <td>0.034</td>
+      <td>1950.0</td>
+      <td>1481.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>control_season</th>
+      <td>4.766</td>
+      <td>1.782</td>
+      <td>1.472</td>
+      <td>8.229</td>
+      <td>0.040</td>
+      <td>0.029</td>
+      <td>1974.0</td>
+      <td>1484.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>base</th>
+      <td>6.855</td>
+      <td>1.123</td>
+      <td>4.674</td>
+      <td>8.888</td>
+      <td>0.030</td>
+      <td>0.022</td>
+      <td>1341.0</td>
+      <td>1462.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>coef_spend_channel_1</th>
+      <td>0.926</td>
+      <td>0.769</td>
+      <td>0.004</td>
+      <td>2.342</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>1665.0</td>
+      <td>880.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>car_spend_channel_1</th>
+      <td>0.445</td>
+      <td>0.219</td>
+      <td>0.064</td>
+      <td>0.830</td>
+      <td>0.003</td>
+      <td>0.003</td>
+      <td>3865.0</td>
+      <td>1264.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>contribution_spend_channel_7[100]</th>
+      <td>0.463</td>
+      <td>0.326</td>
+      <td>0.002</td>
+      <td>1.030</td>
+      <td>0.007</td>
+      <td>0.005</td>
+      <td>1351.0</td>
+      <td>839.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>contribution_spend_channel_7[101]</th>
+      <td>0.611</td>
+      <td>0.418</td>
+      <td>0.004</td>
+      <td>1.377</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>1270.0</td>
+      <td>825.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>contribution_spend_channel_7[102]</th>
+      <td>0.628</td>
+      <td>0.430</td>
+      <td>0.004</td>
+      <td>1.422</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>1271.0</td>
+      <td>825.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>contribution_spend_channel_7[103]</th>
+      <td>0.676</td>
+      <td>0.462</td>
+      <td>0.004</td>
+      <td>1.526</td>
+      <td>0.011</td>
+      <td>0.008</td>
+      <td>1259.0</td>
+      <td>817.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>noise</th>
+      <td>3.930</td>
+      <td>0.302</td>
+      <td>3.351</td>
+      <td>4.467</td>
+      <td>0.007</td>
+      <td>0.005</td>
+      <td>1977.0</td>
+      <td>1417.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>746 rows × 9 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b2da146a-96f5-410f-a8a3-da37385f5212')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-b2da146a-96f5-410f-a8a3-da37385f5212 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-b2da146a-96f5-410f-a8a3-da37385f5212');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+</section>
+</section>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<section id="posterior-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="posterior-distributions">Posterior distributions</h2>
+<div class="cell" data-outputid="03048a03-5f8b-49c8-dad6-9cc584861019" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>az.plot_posterior(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    trace,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    var_names<span class="op">=</span>[<span class="st">'~contribution'</span>],</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    filter_vars<span class="op">=</span><span class="st">'like'</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc4e301c0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc24cea00&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc24fb520&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc245b760&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc23de130&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefca987e20&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc2342430&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc22fff40&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc22265b0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc08b2640&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc02ea580&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc025aa30&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc09fdb20&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc0983d00&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc0966880&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc96f2820&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc961feb0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fefc1476d00&gt;]],
+      dtype=object)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="predictions-vs-observations" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-vs-observations">Predictions vs Observations</h2>
+<p>We can now check the model skill by plotting the predictions and observations together, and calculating, e.g., MAE.</p>
+<div class="cell" data-outputid="08a74df3-f17d-4967-c9d0-06d05de583e6" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> pm3.sample_posterior_predictive(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      <progress value="2000" class="" max="2000" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      100.00% [2000/2000 00:40&lt;00:00]
+    </div>
+    
+</div>
+</div>
+<div class="cell" data-outputid="df25af68-e9ab-4e23-84a0-76c96382f136" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> posterior[<span class="st">'sales'</span>].mean(<span class="dv">0</span>)<span class="op">*</span><span class="dv">10000</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y_stds <span class="op">=</span> posterior[<span class="st">'sales'</span>].std(<span class="dv">0</span>)<span class="op">*</span><span class="dv">10000</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>MAE <span class="op">=</span> mean_absolute_error(y.values, y_pred)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>MAPE <span class="op">=</span> mean_absolute_percentage_error(y.values, y_pred)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>SkillStr <span class="op">=</span> <span class="st">'MAE: </span><span class="sc">%5d</span><span class="ch">\n</span><span class="st">MAPE: </span><span class="sc">%5.2f%%</span><span class="st">'</span><span class="op">%</span>(MAE,MAPE)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(left<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                        bottom<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                        right<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                        top<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>ax.plot(y.values, linewidth<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Observations'</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>ax.plot(y_pred, linewidth<span class="op">=</span><span class="dv">1</span>, c<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">'Mean prediction'</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(np.arange(<span class="bu">len</span>(y)), y_pred <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>y_stds, y_pred <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y_stds, alpha<span class="op">=</span><span class="fl">0.33</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.85</span>,<span class="fl">0.9</span>,SkillStr, transform<span class="op">=</span>ax.transAxes)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper center'</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Week'</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Revenue'</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Except for two weeks, the observations lay within 2 standard deviations plus/minus the predictions. That instance is likely due to a special event, like a promotion or a holiday, which is not accounted for by the model. The mean absolute error corresponds to about 20% of the revenue.</p>
+</section>
+<section id="channel-contributions-and-roi" class="level2">
+<h2 class="anchored" data-anchor-id="channel-contributions-and-roi">Channel Contributions and ROI</h2>
+<div class="cell" data-outputid="b7fefb9a-585e-448f-de96-33091d0dcd89" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean(trace, channel):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (trace</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            .posterior[<span class="ss">f'</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">'</span>]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            .values</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            .reshape(<span class="dv">2000</span>, <span class="dv">104</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            .mean(<span class="dv">0</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>channels <span class="op">=</span> [<span class="ss">f'contribution_spend_channel_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>)]</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>unadj_contributions <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'Base+Trend+Seas'</span>: trace.posterior[<span class="st">'base'</span>].values.mean()</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>                 <span class="op">+</span>trace.posterior[<span class="st">'control_trend'</span>].values.mean()</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                 <span class="op">+</span>trace.posterior[<span class="st">'control_season'</span>].values.mean()},</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>X.index</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> channel <span class="kw">in</span> channels:</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    unadj_contributions[channel] <span class="op">=</span> compute_mean(trace, channel)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>adj_contributions <span class="op">=</span> (unadj_contributions</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>                     .div(unadj_contributions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>                     .mul(y, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> (adj_contributions</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>      .plot.area(</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>          figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>),</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>          linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'Predicted Revenue and Breakdown'</span>,</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>          ylabel<span class="op">=</span><span class="st">'Revenue'</span>,</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>          xlabel<span class="op">=</span><span class="st">'Week'</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>ax.legend(</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    handles[::<span class="op">-</span><span class="dv">1</span>], labels[::<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Channels'</span>, loc<span class="op">=</span><span class="st">"upper right"</span>,</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">#bbox_to_anchor=(1.01, 0.5)</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>According to this plot, the model suggests that a large portion of the revenue is not explained by marketing actions.</p>
+<p>For each channel <span class="math inline">\(m\)</span>, percentage <span class="math inline">\(ROI_m\)</span> can be calculated according to:</p>
+<p><span class="math display">\[
+ROI_m = \frac{\sum_t C_{t,m} - \sum_t S_{t,m}}{\sum_t S_{t,m}} * 100
+\]</span></p>
+<p>where <span class="math inline">\(C_{t,m}\)</span> and <span class="math inline">\(S_{t,m}\)</span> are the revenue contribution and spends to the media channel <span class="math inline">\(m\)</span> at a given time step <span class="math inline">\(t\)</span>.</p>
+<div class="cell" data-outputid="f21baa45-22ea-45ea-ca58-f8332778cdb8" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate ROI for each channel</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>total_contr <span class="op">=</span> adj_contributions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>total_spend <span class="op">=</span> X.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Cchannels <span class="op">=</span> [<span class="ss">f'contribution_spend_channel_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>)]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>Schannels <span class="op">=</span> [<span class="ss">f'spend_channel_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>)]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ROI_l<span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">7</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>spend_l <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">7</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>contr_l <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">7</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">7</span>):</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    spend_l[i] <span class="op">=</span> total_spend[Schannels[i]]</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    contr_l[i] <span class="op">=</span> total_contr[Cchannels[i]]</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    ROI_l[i] <span class="op">=</span> (contr_l[i] <span class="op">-</span> spend_l[i])<span class="op">/</span>spend_l[i] <span class="op">*</span><span class="dv">100</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">10</span>))</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>ax1.bar(np.arange(<span class="dv">1</span>,<span class="dv">8</span>) <span class="op">-</span> <span class="fl">0.2</span>, spend_l, color <span class="op">=</span> <span class="st">'r'</span>, width <span class="op">=</span> <span class="fl">0.4</span>, label<span class="op">=</span><span class="st">'Spend'</span>)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>ax1.bar(np.arange(<span class="dv">1</span>,<span class="dv">8</span>) <span class="op">+</span> <span class="fl">0.2</span>, contr_l, color <span class="op">=</span> <span class="st">'b'</span>, width <span class="op">=</span> <span class="fl">0.4</span>, label<span class="op">=</span><span class="st">'Contr'</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Marketing Channel'</span>)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Contribution and Spends'</span>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>ax1.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>ax2.bar(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>),ROI_l)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Marketing Channel'</span>)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'ROI (%)'</span>)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_old_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Our model suggests that only channels 1, 2 and 6 generate positive net gains. Among these channels, 2 seems most effective in terms of ROI, however, in terms of absolute revenue contribution, channel 6 is the most important source. Among the channels that results in net costs channel 7 is the one that requires most immediate attenion, both in terms of ROI and absolute net cost. Continued investment in channels 3 and 4 seem also questionable.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

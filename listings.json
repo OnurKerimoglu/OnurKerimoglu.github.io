@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/fer_model/facial-expression-recognition-transfer-learning.html",
       "/posts/bayesian_mmm/bayesian_mmm_example_enhanced_newdataset_quarto.html",
       "/posts/welcome/index.html"
     ]

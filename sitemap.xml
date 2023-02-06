@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://OnurKerimoglu.github.io/about.html</loc>
-    <lastmod>2023-02-04T20:32:10.950Z</lastmod>
+    <lastmod>2023-02-06T12:53:10.356Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/posts/welcome/index.html</loc>
-    <lastmod>2023-02-04T20:32:11.338Z</lastmod>
+    <lastmod>2023-02-06T12:53:10.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://OnurKerimoglu.github.io/posts/fer_model/facial-expression-recognition-transfer-learning.html</loc>
+    <lastmod>2023-02-06T12:53:11.532Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/posts/bayesian_mmm/bayesian_mmm_example_enhanced_newdataset_quarto.html</loc>
-    <lastmod>2023-02-04T20:32:12.306Z</lastmod>
+    <lastmod>2023-02-06T12:53:12.464Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/saved4later/bayesian_mmm_example_enhanced_newdataset.html</loc>
-    <lastmod>2023-02-04T20:32:12.822Z</lastmod>
+    <lastmod>2023-02-06T12:53:12.984Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/index.html</loc>
-    <lastmod>2023-02-04T20:32:13.190Z</lastmod>
+    <lastmod>2023-02-06T12:53:13.372Z</lastmod>
   </url>
 </urlset>

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://OnurKerimoglu.github.io/about.html</loc>
-    <lastmod>2023-02-06T12:53:10.356Z</lastmod>
-  </url>
-  <url>
-    <loc>https://OnurKerimoglu.github.io/posts/welcome/index.html</loc>
-    <lastmod>2023-02-06T12:53:10.784Z</lastmod>
-  </url>
-  <url>
-    <loc>https://OnurKerimoglu.github.io/posts/fer_model/facial-expression-recognition-transfer-learning.html</loc>
-    <lastmod>2023-02-06T12:53:11.532Z</lastmod>
+    <loc>https://OnurKerimoglu.github.io/index.html</loc>
+    <lastmod>2024-12-27T09:48:27.688Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/posts/bayesian_mmm/bayesian_mmm_example_enhanced_newdataset_quarto.html</loc>
-    <lastmod>2023-02-06T12:53:12.464Z</lastmod>
+    <lastmod>2024-12-27T08:57:59.968Z</lastmod>
+  </url>
+  <url>
+    <loc>https://OnurKerimoglu.github.io/posts/fer_model/facial-expression-recognition-transfer-learning.html</loc>
+    <lastmod>2024-12-27T09:05:46.713Z</lastmod>
+  </url>
+  <url>
+    <loc>https://OnurKerimoglu.github.io/about.html</loc>
+    <lastmod>2024-12-27T08:57:59.957Z</lastmod>
+  </url>
+  <url>
+    <loc>https://OnurKerimoglu.github.io/posts/welcome/index.html</loc>
+    <lastmod>2024-12-27T08:57:59.977Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/saved4later/bayesian_mmm_example_enhanced_newdataset.html</loc>
-    <lastmod>2023-02-06T12:53:12.984Z</lastmod>
-  </url>
-  <url>
-    <loc>https://OnurKerimoglu.github.io/index.html</loc>
-    <lastmod>2023-02-06T12:53:13.372Z</lastmod>
+    <lastmod>2023-02-03T16:47:32.745Z</lastmod>
   </url>
 </urlset>

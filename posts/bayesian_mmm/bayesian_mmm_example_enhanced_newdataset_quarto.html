@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Onur Kerimoglu">
 <meta name="dcterms.date" content="2023-02-03">
 
-<title>OnurKerimoglu.github.io - Bayesian MMM</title>
+<title>Bayesian MMM – OnurKerimoglu.github.io</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,11 +19,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -48,47 +49,17 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,17 +71,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-8e654c165831b4976dcf0066251c6d9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -119,15 +96,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -135,41 +142,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">OnurKerimoglu.github.io</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://sites.google.com/view/onur-kerimoglu"><i class="bi bi-globe" role="img">
+    <a class="nav-link" href="https://sites.google.com/view/onur-kerimoglu"> <i class="bi bi-globe" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/onur-kerimoglu/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/onur-kerimoglu/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/OnurKerimoglu"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/OnurKerimoglu"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -216,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+
 <p><a href="https://colab.research.google.com/github/OnurKerimoglu/bayesian_mmm/blob/main/examples/bayesian_mmm_example_enhanced_newdataset.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
 <section id="the-problem-statement-and-the-proposed-bayesian-mmm-solution" class="level1">
 <h1>The Problem Statement and the proposed Bayesian MMM solution</h1>
@@ -231,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="install-import-packages" class="level1">
 <h1>Install / Import Packages</h1>
-<div class="cell" data-outputid="0aa05d67-c167-4368-91ed-068ae2d214b2" data-execution_count="30">
+<div id="cell-4" class="cell" data-outputid="0aa05d67-c167-4368-91ed-068ae2d214b2" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pymc3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
@@ -265,7 +275,7 @@ Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.8/dist-
 Requirement already satisfied: cftime in /usr/local/lib/python3.8/dist-packages (from netcdf4-&gt;arviz&gt;=0.11.0-&gt;pymc3) (1.6.2)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="31">
+<div id="cell-5" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -283,7 +293,7 @@ Requirement already satisfied: cftime in /usr/local/lib/python3.8/dist-packages 
 </section>
 <section id="prepare-data" class="level1">
 <h1>Prepare Data</h1>
-<div class="cell" data-execution_count="32">
+<div id="cell-7" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_wdates <span class="op">=</span> pd.read_csv(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://raw.githubusercontent.com/OnurKerimoglu/bayesian_mmm/master/data/MMM_test_data.csv'</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  parse_dates<span class="op">=</span>[<span class="st">'start_of_week'</span>]</span>
@@ -292,7 +302,7 @@ Requirement already satisfied: cftime in /usr/local/lib/python3.8/dist-packages 
 <section id="detect-trend-and-seasonality" class="level2">
 <h2 class="anchored" data-anchor-id="detect-trend-and-seasonality">Detect Trend and Seasonality</h2>
 <p>Let’s first detect the trend ans seasonility in the data, which we will use as control variables in our model.</p>
-<div class="cell" data-outputid="b391d849-7789-446b-fe84-bed8eab1a871" data-execution_count="33">
+<div id="cell-9" class="cell" data-outputid="b391d849-7789-446b-fe84-bed8eab1a871" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prophet_data <span class="op">=</span> data_wdates.rename(columns <span class="op">=</span> {<span class="st">'revenue'</span>: <span class="st">'y'</span>, <span class="st">'start_of_week'</span>: <span class="st">'ds'</span>})</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prophet <span class="op">=</span> Prophet(yearly_seasonality<span class="op">=</span><span class="va">True</span>, weekly_seasonality<span class="op">=</span><span class="va">False</span>)</span>
@@ -312,14 +322,18 @@ INFO:cmdstanpy:Chain [1] start processing
 INFO:cmdstanpy:Chain [1] done processing</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="0f5898e2-7511-4bd1-9c07-a4404a0016bb" data-execution_count="34">
+<div id="cell-10" class="cell" data-outputid="0f5898e2-7511-4bd1-9c07-a4404a0016bb" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> prophet.plot_components(prophet_predict, figsize <span class="op">=</span> (<span class="dv">20</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Adding the detected trend and seasonality signals back to the data table:</p>
-<div class="cell" data-execution_count="35">
+<div id="cell-12" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prophet_columns <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> prophet_predict.columns <span class="cf">if</span> (col.endswith(<span class="st">"upper"</span>) <span class="op">==</span> <span class="va">False</span>) <span class="op">&amp;</span> (col.endswith(<span class="st">"lower"</span>) <span class="op">==</span> <span class="va">False</span>)]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>final_data <span class="op">=</span> data_wdates.copy()</span>
@@ -327,7 +341,7 @@ INFO:cmdstanpy:Chain [1] done processing</code></pre>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>final_data[<span class="st">"season"</span>] <span class="op">=</span> prophet_predict[<span class="st">"yearly"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The final feature (X) and target (y) data:</p>
-<div class="cell" data-execution_count="36">
+<div id="cell-14" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> final_data.drop(columns<span class="op">=</span>[<span class="st">'revenue'</span>, <span class="st">'start_of_week'</span>])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> final_data[<span class="st">'revenue'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -350,7 +364,7 @@ w^g_m = \alpha_m^l,~l = 0, 1, ..., L-1,~0&lt;\alpha_m&lt;1
 <p><span class="math display">\[
 w^d_m = \alpha_m^{(l-\theta_m)^2},~l = 0, 1, ..., L-1,~0&lt;\alpha_m&lt;1,~0 \leq \theta_m \leq L-1
 \]</span></p>
-<div class="cell" data-execution_count="37">
+<div id="cell-17" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adstock_weights(alpha, theta, length<span class="op">=</span><span class="dv">13</span>, delayed<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> delayed:</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> [tt.power(alpha, tt.power(i<span class="op">-</span>theta,<span class="dv">2</span>)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(length)]</span>
@@ -361,7 +375,7 @@ w^d_m = \alpha_m^{(l-\theta_m)^2},~l = 0, 1, ..., L-1,~0&lt;\alpha_m&lt;1,~0 \le
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="38">
+<div id="cell-18" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> carryover (x, alpha, theta<span class="op">=</span><span class="dv">0</span>, length<span class="op">=</span><span class="dv">13</span>, delayed<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> adstock_weights(alpha, theta, length, delayed)</span>
@@ -378,7 +392,7 @@ w^d_m = \alpha_m^{(l-\theta_m)^2},~l = 0, 1, ..., L-1,~0&lt;\alpha_m&lt;1,~0 \le
 \]</span></p>
 <p>where, <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\tau\)</span> represent noise and baseline revenue, <span class="math inline">\(z_{t,c}\)</span> and <span class="math inline">\(\gamma\)</span> represent the control variable <span class="math inline">\(c\)</span> and their effects, and <span class="math inline">\(x^*_{t,m}\)</span> and <span class="math inline">\(\beta_m\)</span> represent the (adstocked) media spending <span class="math inline">\(m\)</span> and their effects, respectively.</p>
 <p>Note that here for simplicity, we assume no shape effects (i.e., no saturation). We further assume that marketing contributions can only be positive, which can be achieved by drawing the contribution coefficient from a half-normal distribution.</p>
-<div class="cell" data-outputid="2290b434-19a2-44c1-b382-22ef2233743a" data-execution_count="39">
+<div id="cell-20" class="cell" data-outputid="2290b434-19a2-44c1-b382-22ef2233743a" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>control_variables <span class="op">=</span> [<span class="st">"trend"</span>, <span class="st">"season"</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>media_channels <span class="op">=</span> [<span class="ss">f'spend_channel_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>)]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>transform_variables <span class="op">=</span> control_variables<span class="op">+</span>media_channels</span>
@@ -458,7 +472,7 @@ Control Variables: Adding season</code></pre>
 <section id="do-the-prior-distributions-make-sense" class="level2">
 <h2 class="anchored" data-anchor-id="do-the-prior-distributions-make-sense">Do the prior distributions make sense?</h2>
 <p>We can check whether the model estimates based on priors more or less make sense, as can be judged from a rough alignment of the corresponding estimates with the observations.</p>
-<div class="cell" data-outputid="3c3301ed-610f-4e8e-92c2-8c7ddcb82664" data-execution_count="40">
+<div id="cell-22" class="cell" data-outputid="3c3301ed-610f-4e8e-92c2-8c7ddcb82664" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    prior_pred <span class="op">=</span> pm3.sample_prior_predictive()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>prior_names <span class="op">=</span> [prior_name <span class="cf">for</span> prior_name <span class="kw">in</span> <span class="bu">list</span>(prior_pred.keys()) <span class="cf">if</span> (prior_name.endswith(<span class="st">"logodds__"</span>) <span class="op">==</span> <span class="va">False</span>) <span class="op">&amp;</span> (prior_name.endswith(<span class="st">"_log__"</span>) <span class="op">==</span> <span class="va">False</span>)]</span>
@@ -470,11 +484,15 @@ Control Variables: Adding season</code></pre>
 WARNING:theano.tensor.blas:We did not find a dynamic library in the library_dir of the library we use for blas. If you use ATLAS, make sure to compile it with dynamics library.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Check the prior distributions:</p>
-<div class="cell" data-outputid="e8d91ba0-8e63-4271-e12b-58f8e3f17166" data-execution_count="41">
+<div id="cell-24" class="cell" data-outputid="e8d91ba0-8e63-4271-e12b-58f8e3f17166" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plots priors using the random variables</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_priors(variables, prior_dictionary <span class="op">=</span> <span class="va">None</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(variables[<span class="dv">0</span>], pm3.model.TransformedRV) <span class="op">==</span> <span class="va">False</span> <span class="kw">and</span> prior_dictionary <span class="kw">is</span> <span class="va">None</span>:</span>
@@ -520,22 +538,38 @@ theta priors: 14
 gamma priors: 4</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-4.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-5.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-13-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="fit-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="fit-the-model">Fit the model</h2>
-<div class="cell" data-outputid="ff84e967-4cf2-45cd-ebea-c8a96f629a8e" data-execution_count="42">
+<div id="cell-26" class="cell" data-outputid="ff84e967-4cf2-45cd-ebea-c8a96f629a8e" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  trace <span class="op">=</span> pm3.sample(return_inferencedata<span class="op">=</span><span class="va">True</span>, tune<span class="op">=</span><span class="dv">3000</span>, target_accept<span class="op">=</span><span class="fl">0.95</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  trace_summary <span class="op">=</span> az.summary(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,165 +632,166 @@ gamma priors: 4</code></pre>
   (between_chain_variance / within_chain_variance + num_samples - 1) / (num_samples)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="ba580765-404c-4e78-bfcd-a23bead88169" data-execution_count="43">
+<div id="cell-27" class="cell" data-outputid="ba580765-404c-4e78-bfcd-a23bead88169" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>trace_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
-
 
   <div id="df-86e633eb-5528-4c9f-a326-48d1b6178db8">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mean</th>
-      <th>sd</th>
-      <th>hdi_3%</th>
-      <th>hdi_97%</th>
-      <th>mcse_mean</th>
-      <th>mcse_sd</th>
-      <th>ess_bulk</th>
-      <th>ess_tail</th>
-      <th>r_hat</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>base</th>
-      <td>7.155</td>
-      <td>1.224</td>
-      <td>4.886</td>
-      <td>9.464</td>
-      <td>0.033</td>
-      <td>0.023</td>
-      <td>1393.0</td>
-      <td>1355.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>gamma_trend</th>
-      <td>2.445</td>
-      <td>1.990</td>
-      <td>-1.465</td>
-      <td>5.856</td>
-      <td>0.056</td>
-      <td>0.040</td>
-      <td>1276.0</td>
-      <td>1215.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>gamma_season</th>
-      <td>4.993</td>
-      <td>1.951</td>
-      <td>1.466</td>
-      <td>8.759</td>
-      <td>0.055</td>
-      <td>0.039</td>
-      <td>1279.0</td>
-      <td>1303.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>noise</th>
-      <td>4.076</td>
-      <td>0.322</td>
-      <td>3.455</td>
-      <td>4.662</td>
-      <td>0.008</td>
-      <td>0.006</td>
-      <td>1713.0</td>
-      <td>1255.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>beta_spend_channel_1</th>
-      <td>1.556</td>
-      <td>1.210</td>
-      <td>0.000</td>
-      <td>3.724</td>
-      <td>0.049</td>
-      <td>0.034</td>
-      <td>514.0</td>
-      <td>681.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>contribution_spend_channel_7[99]</th>
-      <td>0.449</td>
-      <td>0.365</td>
-      <td>0.000</td>
-      <td>1.113</td>
-      <td>0.009</td>
-      <td>0.006</td>
-      <td>1412.0</td>
-      <td>953.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>contribution_spend_channel_7[100]</th>
-      <td>0.423</td>
-      <td>0.339</td>
-      <td>0.000</td>
-      <td>1.039</td>
-      <td>0.008</td>
-      <td>0.006</td>
-      <td>1512.0</td>
-      <td>936.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>contribution_spend_channel_7[101]</th>
-      <td>0.459</td>
-      <td>0.387</td>
-      <td>0.000</td>
-      <td>1.155</td>
-      <td>0.009</td>
-      <td>0.007</td>
-      <td>1447.0</td>
-      <td>992.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>contribution_spend_channel_7[102]</th>
-      <td>0.485</td>
-      <td>0.420</td>
-      <td>0.000</td>
-      <td>1.257</td>
-      <td>0.010</td>
-      <td>0.007</td>
-      <td>1356.0</td>
-      <td>952.0</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>contribution_spend_channel_7[103]</th>
-      <td>0.507</td>
-      <td>0.444</td>
-      <td>0.000</td>
-      <td>1.324</td>
-      <td>0.011</td>
-      <td>0.008</td>
-      <td>1303.0</td>
-      <td>953.0</td>
-      <td>1.00</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">sd</th>
+<th data-quarto-table-cell-role="th">hdi_3%</th>
+<th data-quarto-table-cell-role="th">hdi_97%</th>
+<th data-quarto-table-cell-role="th">mcse_mean</th>
+<th data-quarto-table-cell-role="th">mcse_sd</th>
+<th data-quarto-table-cell-role="th">ess_bulk</th>
+<th data-quarto-table-cell-role="th">ess_tail</th>
+<th data-quarto-table-cell-role="th">r_hat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">base</td>
+<td>7.155</td>
+<td>1.224</td>
+<td>4.886</td>
+<td>9.464</td>
+<td>0.033</td>
+<td>0.023</td>
+<td>1393.0</td>
+<td>1355.0</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">gamma_trend</td>
+<td>2.445</td>
+<td>1.990</td>
+<td>-1.465</td>
+<td>5.856</td>
+<td>0.056</td>
+<td>0.040</td>
+<td>1276.0</td>
+<td>1215.0</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gamma_season</td>
+<td>4.993</td>
+<td>1.951</td>
+<td>1.466</td>
+<td>8.759</td>
+<td>0.055</td>
+<td>0.039</td>
+<td>1279.0</td>
+<td>1303.0</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">noise</td>
+<td>4.076</td>
+<td>0.322</td>
+<td>3.455</td>
+<td>4.662</td>
+<td>0.008</td>
+<td>0.006</td>
+<td>1713.0</td>
+<td>1255.0</td>
+<td>1.01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">beta_spend_channel_1</td>
+<td>1.556</td>
+<td>1.210</td>
+<td>0.000</td>
+<td>3.724</td>
+<td>0.049</td>
+<td>0.034</td>
+<td>514.0</td>
+<td>681.0</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">contribution_spend_channel_7[99]</td>
+<td>0.449</td>
+<td>0.365</td>
+<td>0.000</td>
+<td>1.113</td>
+<td>0.009</td>
+<td>0.006</td>
+<td>1412.0</td>
+<td>953.0</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">contribution_spend_channel_7[100]</td>
+<td>0.423</td>
+<td>0.339</td>
+<td>0.000</td>
+<td>1.039</td>
+<td>0.008</td>
+<td>0.006</td>
+<td>1512.0</td>
+<td>936.0</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">contribution_spend_channel_7[101]</td>
+<td>0.459</td>
+<td>0.387</td>
+<td>0.000</td>
+<td>1.155</td>
+<td>0.009</td>
+<td>0.007</td>
+<td>1447.0</td>
+<td>992.0</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">contribution_spend_channel_7[102]</td>
+<td>0.485</td>
+<td>0.420</td>
+<td>0.000</td>
+<td>1.257</td>
+<td>0.010</td>
+<td>0.007</td>
+<td>1356.0</td>
+<td>952.0</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">contribution_spend_channel_7[103]</td>
+<td>0.507</td>
+<td>0.444</td>
+<td>0.000</td>
+<td>1.324</td>
+<td>0.011</td>
+<td>0.008</td>
+<td>1303.0</td>
+<td>953.0</td>
+<td>1.00</td>
+</tr>
+</tbody>
 </table>
+
 <p>753 rows × 9 columns</p>
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-86e633eb-5528-4c9f-a326-48d1b6178db8')" title="Convert this dataframe to an interactive table." style="display:none;">
@@ -840,7 +875,7 @@ gamma priors: 4</code></pre>
 <h1>Analysis</h1>
 <section id="posterior-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="posterior-distributions">Posterior distributions</h2>
-<div class="cell" data-outputid="5b1edb6f-1ed3-4a0a-d1e0-018dc28f24c6" data-execution_count="44">
+<div id="cell-30" class="cell" data-outputid="5b1edb6f-1ed3-4a0a-d1e0-018dc28f24c6" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>az.plot_posterior(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    trace,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    var_names<span class="op">=</span>[<span class="st">'~contribution'</span>],</span>
@@ -878,14 +913,18 @@ gamma priors: 4</code></pre>
       dtype=object)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-16-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="predictions-vs-observations" class="level2">
 <h2 class="anchored" data-anchor-id="predictions-vs-observations">Predictions vs Observations</h2>
 <p>We can now check the model skill by plotting the predictions and observations together, and calculating, e.g., MAE.</p>
-<div class="cell" data-outputid="295f12c8-eebc-4f17-d727-d74ab6160905" data-execution_count="45">
+<div id="cell-32" class="cell" data-outputid="295f12c8-eebc-4f17-d727-d74ab6160905" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mmm1:</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> pm3.sample_posterior_predictive(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -915,7 +954,7 @@ gamma priors: 4</code></pre>
     
 </div>
 </div>
-<div class="cell" data-outputid="1fca6fc2-74ec-4de3-a036-24b6bb28d062" data-execution_count="46">
+<div id="cell-33" class="cell" data-outputid="1fca6fc2-74ec-4de3-a036-24b6bb28d062" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> posterior[<span class="st">'revenue'</span>].mean(<span class="dv">0</span>)<span class="op">*</span><span class="dv">10000</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y_stds <span class="op">=</span> posterior[<span class="st">'revenue'</span>].std(<span class="dv">0</span>)<span class="op">*</span><span class="dv">10000</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -936,14 +975,18 @@ gamma priors: 4</code></pre>
 <span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Revenue'</span>)</span>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Except for two weeks, the observations lay within 2 standard deviations plus/minus the predictions. That instance is likely due to a special event, like a promotion or a holiday, which is not accounted for by the model. The mean absolute error corresponds to about 20% of the revenue.</p>
 </section>
 <section id="channel-contributions-and-roi" class="level2">
 <h2 class="anchored" data-anchor-id="channel-contributions-and-roi">Channel Contributions and ROI</h2>
-<div class="cell" data-outputid="f9c8be05-6bbd-4735-b900-106e2a85d204" data-execution_count="47">
+<div id="cell-36" class="cell" data-outputid="f9c8be05-6bbd-4735-b900-106e2a85d204" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean(trace, channel):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (trace</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>            .posterior[<span class="ss">f'</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">'</span>]</span>
@@ -987,14 +1030,18 @@ gamma priors: 4</code></pre>
 <span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>According to this plot, the model suggests that a large portion of the revenue is not explained by marketing actions.</p>
 <p>For each channel <span class="math inline">\(m\)</span>, percentage <span class="math inline">\(ROI_m\)</span> can be calculated according to:</p>
 <p><span class="math inline">\(ROI_m = \frac{\sum_t C_{t,m} - \sum_t S_{t,m}}{\sum_t S_{t,m}} * 100\)</span></p>
 <p>where <span class="math inline">\(C_{t,m}\)</span> and <span class="math inline">\(S_{t,m}\)</span> are the revenue contribution and spends to the media channel <span class="math inline">\(m\)</span> at a given time step (<span class="math inline">\(t\)</span>).</p>
-<div class="cell" data-outputid="06764beb-958a-42f9-e42f-f0ad4e7cb293" data-execution_count="48">
+<div id="cell-38" class="cell" data-outputid="06764beb-958a-42f9-e42f-f0ad4e7cb293" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate ROI for each channel</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>total_contr <span class="op">=</span> adj_contributions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>total_spend <span class="op">=</span> X.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1024,7 +1071,11 @@ gamma priors: 4</code></pre>
 <span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="bayesian_mmm_example_enhanced_newdataset_quarto_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Our model suggests that only channels 1, 2 and 6 generate positive net gains. Among these channels, 2 seems most effective in terms of ROI, however, in terms of absolute revenue contribution, channel 6 is the most important source. Among the channels that results in net costs channel 7 is the one that requires most immediate attenion, both in terms of ROI and absolute net cost. Continued investment in channels 3 and 4 seem also questionable.</p>
@@ -1061,12 +1112,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1098,11 +1152,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/OnurKerimoglu\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1112,8 +1203,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1125,9 +1225,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1168,6 +1503,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

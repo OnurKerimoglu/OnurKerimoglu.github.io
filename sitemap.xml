@@ -2,23 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://OnurKerimoglu.github.io/index.html</loc>
-    <lastmod>2024-12-30T12:08:23.924Z</lastmod>
+    <lastmod>2024-12-31T12:42:06.924Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/posts/bayesian_mmm/bayesian_mmm_example_enhanced_newdataset_quarto.html</loc>
     <lastmod>2024-12-27T08:57:59.968Z</lastmod>
   </url>
   <url>
-    <loc>https://OnurKerimoglu.github.io/posts/fer_model/facial-expression-recognition-transfer-learning.html</loc>
-    <lastmod>2024-12-27T09:05:46.713Z</lastmod>
+    <loc>https://OnurKerimoglu.github.io/posts/rag_chatbot/rag_chatbot.html</loc>
+    <lastmod>2024-12-31T12:51:45.891Z</lastmod>
+  </url>
+  <url>
+    <loc>https://OnurKerimoglu.github.io/posts/welcome/index.html</loc>
+    <lastmod>2024-12-30T12:08:55.199Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/about.html</loc>
     <lastmod>2024-12-27T08:57:59.957Z</lastmod>
   </url>
   <url>
-    <loc>https://OnurKerimoglu.github.io/posts/welcome/index.html</loc>
-    <lastmod>2024-12-30T12:08:55.199Z</lastmod>
+    <loc>https://OnurKerimoglu.github.io/posts/fer_model/facial-expression-recognition-transfer-learning.html</loc>
+    <lastmod>2024-12-27T09:05:46.713Z</lastmod>
   </url>
   <url>
     <loc>https://OnurKerimoglu.github.io/saved4later/bayesian_mmm_example_enhanced_newdataset.html</loc>
